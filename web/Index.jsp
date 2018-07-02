@@ -14,4 +14,9 @@
     <body>
         <jsp:forward page="/MahasiswaController?action=listmahasiswa" />
     </body>
+<!--    <body>
+    <center><h2>Home Page</h2></center>
+    Welcome <%=request.getAttribute("username")%>  Refer to the video to understand how this works 
+    <div style="text-align: right"><a href="LogoutController">Logout</a></div>
+</body>-->
 </html>

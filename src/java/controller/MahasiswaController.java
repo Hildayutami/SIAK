@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package contoller;
+package controller;
 
 import dao.MahasiswaDAO;
 import java.io.IOException;
@@ -15,7 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import model.Mahasiswa;
 
 /**
@@ -24,7 +23,7 @@ import model.Mahasiswa;
  */
 @WebServlet(name = "MahasiswaController", urlPatterns = {"/MahasiswaController"})
 public class MahasiswaController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
     private static String insert_or_edit = "/Mahasiswa.jsp";
     private static String list_mahasiswa = "/ListMahasiswa.jsp";
     private MahasiswaDAO mahasiswaDAO;
@@ -66,6 +65,7 @@ public class MahasiswaController extends HttpServlet {
         } else if (action.equalsIgnoreCase("listmahasiswa")) {
             forward = list_mahasiswa;
             try {
+                request.getParameter("username");  
                 request.setAttribute("mahasiswa", mahasiswaDAO.getMahasiswa());
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -80,14 +80,16 @@ public class MahasiswaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Mahasiswa mhs = new Mahasiswa();
+        
         String npm = request.getParameter("npm");
+        
         mhs.setNpm(Integer.parseInt(request.getParameter("npm")));
         mhs.setNama(request.getParameter("nama"));
         mhs.setAngkatan(Integer.parseInt(request.getParameter("angkatan")));
         mhs.setFakultas(request.getParameter("fakultas"));
         mhs.setIpk(Integer.parseInt(request.getParameter("ipk")));
         
-        mahasiswaDAO.addMahasiswa(mhs);
+        //mahasiswaDAO.addMahasiswa(mhs);
         
         //System.out.println("ola");
         //System.out.println(npm);
@@ -95,12 +97,12 @@ public class MahasiswaController extends HttpServlet {
         // request is null
         // then, the user is trying to add someone, otherwise, he's trying to
         // update someone
-//        if (npm == null || npm.isEmpty()) {
-//            mahasiswaDAO.addMahasiswa(mhs);
-//        } else {
-//            mhs.setNpm(Integer.parseInt(npm));
-//            mahasiswaDAO.updateMahasiswa(mhs);
-//        }
+        if (npm != null || !npm.isEmpty()) {
+            mhs.setNpm(Integer.parseInt(npm));
+            mahasiswaDAO.updateMahasiswa(mhs);
+        } 
+        mahasiswaDAO.addMahasiswa(mhs);
+        
         response.sendRedirect(request.getContextPath() + "/Index.jsp");
     }
 

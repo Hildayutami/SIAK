@@ -22,62 +22,63 @@
         <link href="bootstrap.css" rel="stylesheet">
     </head>
     <body>
+    <div style="text-align: left"><a href="LogoutController">Logout</a></div>
 
-        <h3><center> Data Mahasiswa <center></h3><br><br>
-                    <div class="wrap">
-                        <section>
-                            <div class="container">
-                                <table class="table table-hover">
-                                    <thead>
+    <h3><center> Data Mahasiswa <center></h3><br><br>
+                <div class="wrap">
+                    <section>
+                        <div class="container">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            NPM
+                                        </th>
+                                        <th>
+                                            Nama
+                                        </th>
+                                        <th>
+                                            Angkatan
+                                        </th>
+                                        <th>
+                                            Fakultas
+                                        </th>
+                                        <th>
+                                            IPK
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${mahasiswa}" var="mhs">
                                         <tr>
-                                            <th>
-                                                NPM
-                                            </th>
-                                            <th>
-                                                Nama
-                                            </th>
-                                            <th>
-                                                Angkatan
-                                            </th>
-                                            <th>
-                                                Fakultas
-                                            </th>
-                                            <th>
-                                                IPK
-                                            </th>
+                                            <td>
+                                                <c:out value="${mhs.npm}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${mhs.nama}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${mhs.angkatan}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${mhs.fakultas}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${mhs.ipk}"/>
+                                            </td>
+                                            <td><a href="MahasiswaController?action=edit&npm=<c:out value="${mhs.npm}"/>">Update</a></td>
+                                            <td><a href="MahasiswaController?action=delete&npm=<c:out value="${mhs.npm}"/>">Delete</a></td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach items="${mahasiswa}" var="mhs">
-                                            <tr>
-                                                <td>
-                                                    <c:out value="${mhs.npm}"/>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${mhs.nama}"/>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${mhs.angkatan}"/>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${mhs.fakultas}"/>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${mhs.ipk}"/>
-                                                </td>
-                                                <td><a href="MahasiswaController?action=edit&npm=<c:out value="${mhs.npm}"/>">Update</a></td>
-                                                <td><a href="MahasiswaController?action=delete&npm=<c:out value="${mhs.npm}"/>">Delete</a></td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-                                <a href="MahasiswaController?action=insert" role="button" class="btn btn-info btn-lg" data-toggle="modal">Tambah Mahasiswa</a>	
-                            </div>
-                        </section>	
-                    </div>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                            <a href="MahasiswaController?action=insert" role="button" class="btn btn-info btn-lg" data-toggle="modal">Tambah Mahasiswa</a>	
+                        </div>
+                    </section>	
+                </div>
 
-                    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-                    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+                <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+                <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-                    </body>
-                    </html>
+                </body>
+                </html>
